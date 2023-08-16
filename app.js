@@ -75,7 +75,7 @@ app.use(bodyParser.json());
 const corsOptions={
 
   credentials:true,
-   origin: 'https://msildg.onrender.com'
+   origin: 'https://recibookbydg.onrender.com'
 }
 
 app.use(function(req, res, next) {  
