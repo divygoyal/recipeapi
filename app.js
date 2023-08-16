@@ -10,7 +10,7 @@ dotenv.config({path:'./.env'})
 // for storing the photos in local folder 
 const multer  = require('multer')
 
-
+const cors = require('cors');
 
 
 
@@ -72,6 +72,29 @@ const upload = multer({ storage: storage })
 const bodyParser = require("body-parser"); 
 app.use(bodyParser.json());
 
+const corsOptions={
+
+  credentials:true,
+   origin: 'https://msildg.onrender.com'
+}
+
+app.use(function(req, res, next) {  
+  res.header('Access-Control-Allow-Origin', "https://recibookbydg.onrender.com/");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+     res.header('Access-Control-Allow-Credentials', true);
+  next();
+});  
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', 'https://recibookbydg.onrender.com');
+  next();
+});
+app.use(
+  cors({
+  origin:"https://recibookbydg.onrender.com"
+  })
+  );
+  app.use(cors(corsOptions));
 
 app.post("/" , upload.single('file') , async(req , res)=>{
     
